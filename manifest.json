@@ -1,0 +1,39 @@
+{
+	"manifest_version": 3,
+	"name": "EasyChat",
+	"version": "1.0.0",
+	"description": "配信ページを開かずに、ショートカットキーですばやくチャットができます。",
+	"icons": {
+    	//"16": "icon/icon16.png",
+    	//"48": "icon/icon48.png",
+    	//"128": "icon/icon128.png"
+	},
+	"permissions": [
+		"tabs"
+	],
+	"content_scripts": [
+		{
+			"matches": ["https://www.youtube.com/*"],
+			"include_globs": ["*://*/*watch*"],
+			"js": ["jquery-3.6.0.min.js", "streamDetail_getter.js"]
+		}
+	],
+	"background": {
+        "service_worker": "service_worker.js"
+    },
+    "commands": {
+    	"easyChat": {
+    		"suggested_key": {
+	    		"default": "Ctrl+Space"
+	    	},
+    		"description": "チャットの入力",
+			"global": true
+    	}
+    },
+	"web_accessible_resources": [
+		{
+			"resources": ["selectChannel.html"],
+			"matches": ["<all_urls>"]
+		}
+	]
+}
