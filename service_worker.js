@@ -1,7 +1,21 @@
-const selectChannelURL = chrome.runtime.getURL('selectChannel.html');
+/*
+YouTube Live
+ニコ生
+SHOWROOM
+Twitch
+OPENREC.tv
+mildom
+ツイキャス
+00:00 Studio
+*/
+
+const selectChannelURL = chrome.runtime.getURL('selectChannel/selectChannel.html');
 
 chrome.commands.onCommand.addListener((command) => {
     if (command === 'easyChat') {
-        chrome.windows.create({focused: true, top: 32, left: 32, type: 'panel', url: 'https://www.youtube.com/live_chat?is_popout=1&v=2x-MUm7hl3M'})
+        chrome.windows.getAll({windowTypes: 'popup'}, function(windows) {
+            console.log(windows)
+        });
+        chrome.windows.create({focused: true, top: 32, left: 32, type: 'panel', url: selectChannelURL});
     };
 });

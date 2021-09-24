@@ -32,7 +32,7 @@
     },
 	"web_accessible_resources": [
 		{
-			"resources": ["selectChannel.html"],
+			"resources": ["selectChannel/selectChannel.html"],
 			"matches": ["<all_urls>"]
 		}
 	]
