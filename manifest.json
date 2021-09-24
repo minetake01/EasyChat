@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "EasyChat",
+	"name": "EasyLiveChat",
 	"version": "1.0.0",
 	"description": "配信ページを開かずに、ショートカットキーですばやくチャットができます。",
 	"icons": {
@@ -22,7 +22,7 @@
         "service_worker": "service_worker.js"
     },
     "commands": {
-    	"easyChat": {
+    	"EasyLiveChat": {
     		"suggested_key": {
 	    		"default": "Ctrl+Space"
 	    	},

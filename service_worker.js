@@ -1,4 +1,5 @@
 /*
+対応予定の配信サービス
 YouTube Live
 ニコ生
 SHOWROOM
@@ -12,8 +13,8 @@ mildom
 const selectChannelURL = chrome.runtime.getURL('selectChannel/selectChannel.html');
 
 chrome.commands.onCommand.addListener((command) => {
-    if (command === 'easyChat') {
-        chrome.windows.getAll({windowTypes: 'popup'}, function(windows) {
+    if (command === 'EasyLiveChat') {
+        chrome.windows.getAll(function(windows) {
             console.log(windows)
         });
         chrome.windows.create({focused: true, top: 32, left: 32, type: 'panel', url: selectChannelURL});
