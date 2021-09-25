@@ -25,6 +25,8 @@ chrome.commands.onCommand.addListener((command) => {
                     top: 32,
                     left: 32,
                     type: 'panel',
+                    height: 200,
+                    width: 500,
                     url: selectChannelURL
                 }, function(window) {
                     windowID = window.id;
@@ -33,6 +35,3 @@ chrome.commands.onCommand.addListener((command) => {
         });
     };
 });
-
-console.log(screen.availHeight)
-console.log(screen.availWidth)

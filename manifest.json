@@ -15,7 +15,37 @@
 		{
 			"matches": ["https://www.youtube.com/*"],
 			"include_globs": ["*://*/*watch*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter.js"]
+			"js": ["jquery-3.6.0.min.js", "yt_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://live.nicovideo.jp/*"],
+			"include_globs": ["*://*/*watch*"],
+			"js": ["jquery-3.6.0.min.js", "nico_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://www.twitch.tv/*"],
+			"js": ["jquery-3.6.0.min.js", "twitch_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://www.showroom-live.com/*"],
+			"js": ["jquery-3.6.0.min.js", "showroom_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://www.openrec.tv/*"],
+			"include_globs": ["*://*/*live*"],
+			"js": ["jquery-3.6.0.min.js", "openrec_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://www.mildom.com/*"],
+			"js": ["jquery-3.6.0.min.js", "mildom_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://twitcasting.tv/*"],
+			"js": ["jquery-3.6.0.min.js", "twicas_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://0000.studio.com/*"],
+			"js": ["jquery-3.6.0.min.js", "f0studio_streamDetail_getter.js"]
 		}
 	],
 	"background": {
