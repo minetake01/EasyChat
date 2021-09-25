@@ -1,0 +1,30 @@
+:root {
+    --main-background: #f9f9f9;
+    --header-background: #fff;
+
+    --main-text-color: #000;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-background: #181818;
+        --header-background: #202020;
+
+        --main-text-color: #fff;
+    }
+}
+body {
+    background: var(--main-background);
+    margin: 0px;
+}
+#header {
+    display: flex;
+    background: var(--header-background);
+    height: 40px;
+    width: 100%;
+}
+#title.select-channel-header {
+    color: var(--main-text-color);
+    font-size: 16px;
+    margin: auto 12px;
+    user-select: none;
+}
