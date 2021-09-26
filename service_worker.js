@@ -1,15 +1,3 @@
-/*
-対応予定の配信サービス
-YouTube Live
-ニコ生
-SHOWROOM
-Twitch
-OPENREC.tv
-mildom
-ツイキャス
-00:00 Studio
-*/
-
 const selectChannelURL = chrome.runtime.getURL('selectChannel/selectChannel.html');
 
 let windowID = -1;
@@ -30,8 +18,19 @@ chrome.commands.onCommand.addListener((command) => {
                     url: selectChannelURL
                 }, function(window) {
                     windowID = window.id;
-                    
-                    chrome.tabs.query({url: '<all_urls>'}, function(tabs) {
+
+                    chrome.tabs.query({
+                        url: [
+                            'https://www.youtube.com/watch*',
+                            'https://live.nicovideo.jp/watch*',
+                            'https://www.twitch.tv/*',
+                            'https://www.showroom-live.com/*',
+                            'https://www.openrec.tv/live*',
+                            'https://www.mildom.com/*',
+                            'https://twitcasting.tv/*',
+                            'https://0000.studio/*'
+                        ]
+                    }, function(tabs) {
                         tabs.forEach(function(tab){
                             let toGetterPort = chrome.tabs.connect(tab.id);
                             toGetterPort.postMessage({getStreamDetail: 'ELCget'});
