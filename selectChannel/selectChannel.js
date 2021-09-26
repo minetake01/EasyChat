@@ -16,4 +16,13 @@ $(window).on('load', function() {
             break;
         };
     })();
+
+    chrome.runtime.onConnect.addListener(function(port) {
+        port.onMessage.addListener(function(request) {
+            if (request.type === 'appendContent') {
+                console.log(request);
+            };
+            return true;
+        });
+    });
 });
