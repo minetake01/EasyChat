@@ -30,6 +30,17 @@ chrome.commands.onCommand.addListener((command) => {
                     url: selectChannelURL
                 }, function(window) {
                     windowID = window.id;
+                    
+                    chrome.tabs.query({url: '<all_urls>'}, function(tabs) {
+                        tabs.forEach(function(tab){
+                            let toGetterPort = chrome.tabs.connect(tab.id);
+                            toGetterPort.postMessage({getStreamDetail: 'ELCget'});
+                    
+                            toGetterPort.onMessage.addListener(function(response) {
+                                console.log(response);
+                            });
+                        });
+                    });
                 });
             };
         });

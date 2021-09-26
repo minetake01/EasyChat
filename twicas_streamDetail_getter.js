@@ -1,14 +1,16 @@
 chrome.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(request) {
-        if (request.getStreamDetail === 'ELCet') {
-            let streamID = 
-            let channelID = 
-            let ChannelName = 
+        if (request.getStreamDetail === 'ELCget') {
+            let platform = 'twitcasting'
+            let chatOK = !!$('#comment-list-app > form > textarea').length;
+            let streamURL = location.href;
+            let streamTitle = $('#mainwrapper > div.tw-user-header > nav > div > div > div > div > span').html();
             
             port.postMessage({
-                getter_streamID: streamID,
-                getter_channelID: channelID,
-                getter_channelName: ChannelName
+                getter_platform: platform,
+                getter_chatOK: chatOK,
+                getter_streamURL: streamURL,
+                getter_streamTitle: streamTitle
             });
         };
     });

@@ -44,7 +44,7 @@
 			"js": ["jquery-3.6.0.min.js", "twicas_streamDetail_getter.js"]
 		},
 		{
-			"matches": ["https://0000.studio.com/*"],
+			"matches": ["https://0000.studio/*"],
 			"js": ["jquery-3.6.0.min.js", "f0studio_streamDetail_getter.js"]
 		}
 	],

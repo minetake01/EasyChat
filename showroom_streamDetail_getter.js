@@ -1,14 +1,16 @@
 chrome.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(request) {
-        if (request.getStreamDetail === 'ELCet') {
-            let streamID = 
-            let channelID = 
-            let ChannelName = 
+        if (request.getStreamDetail === 'ELCget') {
+            let platform = 'showroom'
+            let chatOK = !!$('#js-chat-input-comment').length;
+            let streamURL = location.href;
+            let streamTitle = $('#room-header > div.room-header > div.room-header-user-info > h1').html();
             
             port.postMessage({
-                getter_streamID: streamID,
-                getter_channelID: channelID,
-                getter_channelName: ChannelName
+                getter_platform: platform,
+                getter_chatOK: chatOK,
+                getter_streamURL: streamURL,
+                getter_streamTitle: streamTitle
             });
         };
     });
