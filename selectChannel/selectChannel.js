@@ -3,6 +3,42 @@ const language = (window.navigator.languages && window.navigator.languages[0]) |
             window.navigator.userLanguage ||
             window.navigator.browserLanguage;
 
+function contentElement(title, platform) {
+    let platformIcon;
+    switch (platform) {
+        case 'youtube':
+
+        break;
+        case 'nicovideo':
+
+        break;
+        case 'twitch':
+
+        break;
+        case 'showroom':
+
+        break;
+        case 'openrec':
+
+        break;
+        case 'mildom':
+
+        break;
+        case 'twicas':
+
+        break;
+        case '0000studio':
+
+        break;
+    };
+    return (function(param) {return param[0].replace(/\n|\r/g, "");})`
+        <div id="content" class="easy-live-chat-content">
+            ` + platformIcon + `
+            <div id="content-title" class="easy-live-chat-content">` + title + `</div>
+        </div>
+    `;
+};
+
 $(window).on('load', function() {
     (function lang() {
         switch (language) {
@@ -17,12 +53,16 @@ $(window).on('load', function() {
         };
     })();
 
-    chrome.runtime.onConnect.addListener(function(port) {
-        port.onMessage.addListener(function(request) {
-            if (request.type === 'appendContent') {
-                console.log(request);
-            };
-            return true;
+    let port = chrome.runtime.connect();
+    port.postMessage({type: 'getStreamDetail'});
+    port.onMessage.addListener(function(contentArray) {
+        console.log(contentArray)
+        contentArray.forEach(function(content) {
+            console.log(content)
+            console.log(content[0])
+            console.log(content[1])
+            console.log(content[2])
         });
+        //$('#contents.easy-live-chat').append(contentElement())
     });
 });

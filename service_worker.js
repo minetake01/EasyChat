@@ -1,65 +1,79 @@
 const selectChannelURL = chrome.runtime.getURL('selectChannel/selectChannel.html');
+const urls = [
+    'https://www.youtube.com/watch*',
+    'https://live.nicovideo.jp/watch*',
+    'https://www.twitch.tv/*',
+    'https://www.showroom-live.com/*',
+    'https://www.openrec.tv/live*',
+    'https://www.mildom.com/*',
+    'https://twitcasting.tv/*',
+    'https://0000.studio/*'
+];
+//チャンネル選択ウィンドウの初期状態
+const windowOption = {
+    focused: true,
+    top: 32,
+    left: 32,
+    type: 'panel',
+    height: 200,
+    width: 500,
+    url: selectChannelURL
+};
 
 let windowID = -1;
 
-chrome.commands.onCommand.addListener((command) => {
-    if (command === 'EasyLiveChat') {
-        chrome.windows.get(windowID, function(window) {
-            if (!chrome.runtime.lastError && window) {
-                chrome.windows.update(windowID, {focused: true});
-            } else {
-                chrome.tabs.query({
-                    url: [
-                        'https://www.youtube.com/watch*',
-                        'https://live.nicovideo.jp/watch*',
-                        'https://www.twitch.tv/*',
-                        'https://www.showroom-live.com/*',
-                        'https://www.openrec.tv/live*',
-                        'https://www.mildom.com/*',
-                        'https://twitcasting.tv/*',
-                        'https://0000.studio/*'
-                    ]
-                }, function(tabs) {
-                    let loopCount = 0;
-                    let chatOKCount = 0;
-                    let contentArray = {};
-                    tabs.forEach(function(tab){
-                        let toGetterPort = chrome.tabs.connect(tab.id);
-                        toGetterPort.postMessage({getStreamDetail: 'ELCget'});
-                
-                        toGetterPort.onMessage.addListener(function(response) {
-                            if (response.getter_chatOK === true) {
-                                chatOKCount++
-                                contentArray[response.getter_streamTitle] = response.getter_platform;
-                                if (tabs.length === loopCount) {
-                                    chrome.windows.create({
-                                        focused: true,
-                                        top: 32,
-                                        left: 32,
-                                        type: 'panel',
-                                        height: 200,
-                                        width: 500,
-                                        url: selectChannelURL
-                                    }, function(window) {
-                                        windowID = window.id;
-                                        chrome.tabs.query({windowId: windowID}, function(windowtabs) {
-                                            let selectChannelPort = chrome.tabs.connect(windowtabs[0].id);
-                                            console.log(chatOKCount)
-                                            console.log(contentArray)
-                                            selectChannelPort.postMessage({
-                                                type: 'appendContent',
-                                                chatOK: chatOKCount,
-                                                contentArray: contentArray
-                                            });
-                                        });
-                                    });
-                                };
-                            };
-                        });
-                        loopCount++;
+(function windowCreate() {
+    chrome.commands.onCommand.addListener((command) => {
+        if (command === 'EasyLiveChat') {
+            //開かれているウィンドウを取得
+            chrome.windows.get(windowID, function(window) {
+                if (!chrome.runtime.lastError && window) {
+                    //すでに開かれていればフォーカス
+                    chrome.windows.update(windowID, {focused: true});
+                } else {
+                    //開かれていなければ作成
+                    chrome.windows.create(windowOption, function(window) {
+                        //ウィンドウを使いまわしするためにID保持
+                        windowID = window.id;
                     });
+                };
+            });
+        };
+    });
+})();
+
+(function requestStreamDetail() {
+    chrome.runtime.onConnect.addListener(function(port) {
+        port.onMessage.addListener(function(message) {
+            if (message.type === 'getStreamDetail') {
+                getStreamDetail().then(function(contentArray) {
+                    port.postMessage({contentArray});
                 });
             };
         });
-    };
-});
+    });
+})();
+
+function getStreamDetail() {
+    return new Promise(resolve => {
+        chrome.tabs.query({url: urls}, function(tabs) {
+            let chatOKCount = 0;
+            let loopCount = 0;
+            let contentArray = [];
+            tabs.forEach(function(tab){
+                let toGetterPort = chrome.tabs.connect(tab.id);
+                toGetterPort.postMessage({getStreamDetail: 'ELCget'});
+        
+                toGetterPort.onMessage.addListener(function(response) {
+                    if (response.getter_chatOK === true) {
+                        contentArray.push([response.getter_platform, response.getter_streamTitle, response.getter_streamURL]);
+                        chatOKCount++
+                        console.log(contentArray)
+                        resolve(contentArray);
+                    };
+                });
+                loopCount++;
+            });
+        });
+    });
+};

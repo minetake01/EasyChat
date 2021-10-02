@@ -22,7 +22,7 @@ body {
     height: 40px;
     width: 100%;
 }
-#title.select-channel-header {
+#title.select-stream-header {
     color: var(--main-text-color);
     font-size: 16px;
     margin: auto 12px;
