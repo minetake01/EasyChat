@@ -55,14 +55,9 @@ $(window).on('load', function() {
 
     let port = chrome.runtime.connect();
     port.postMessage({type: 'getStreamDetail'});
-    port.onMessage.addListener(function(contentArray) {
-        console.log(contentArray)
-        contentArray.forEach(function(content) {
-            console.log(content)
-            console.log(content[0])
-            console.log(content[1])
-            console.log(content[2])
-        });
+    port.onMessage.addListener(function(message) {
+        console.log(message)
         //$('#contents.easy-live-chat').append(contentElement())
+        return;
     });
 });

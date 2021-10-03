@@ -47,7 +47,10 @@ let windowID = -1;
         port.onMessage.addListener(function(message) {
             if (message.type === 'getStreamDetail') {
                 getStreamDetail().then(function(contentArray) {
-                    port.postMessage({contentArray});
+                    let contentJSON = JSON.stringify(contentArray);
+                    console.log(contentArray)
+                    console.log(contentJSON)
+                    port.postMessage({contentArray: contentJSON});
                 });
             };
         });
@@ -58,9 +61,8 @@ function getStreamDetail() {
     return new Promise(resolve => {
         chrome.tabs.query({url: urls}, function(tabs) {
             let chatOKCount = 0;
-            let loopCount = 0;
             let contentArray = [];
-            tabs.forEach(function(tab){
+            tabs.forEach(function(tab, index){
                 let toGetterPort = chrome.tabs.connect(tab.id);
                 toGetterPort.postMessage({getStreamDetail: 'ELCget'});
         
@@ -68,11 +70,11 @@ function getStreamDetail() {
                     if (response.getter_chatOK === true) {
                         contentArray.push([response.getter_platform, response.getter_streamTitle, response.getter_streamURL]);
                         chatOKCount++
-                        console.log(contentArray)
-                        resolve(contentArray);
                     };
                 });
-                loopCount++;
+                if (index === tabs.length-1) {
+                    resolve(contentArray);
+                };
             });
         });
     });
