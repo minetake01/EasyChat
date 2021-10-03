@@ -68,7 +68,11 @@ function getStreamDetail() {
         
                 toGetterPort.onMessage.addListener(function(response) {
                     if (response.getter_chatOK === true) {
-                        contentArray.push([response.getter_platform, response.getter_streamTitle, response.getter_streamURL]);
+                        contentArray.push({
+                            platform: response.getter_platform,
+                            streamTitle: response.getter_streamTitle,
+                            streamURL: response.getter_streamURL
+                        });
                         chatOKCount++
                     };
                 });
