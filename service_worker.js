@@ -60,9 +60,9 @@ let windowID = -1;
 function getStreamDetail() {
     return new Promise(resolve => {
         chrome.tabs.query({url: urls}, function(tabs) {
-            let chatOKCount = 0;
+            let index = 0;
             let contentArray = [];
-            tabs.forEach(function(tab, index){
+            tabs.forEach(function(tab){
                 let toGetterPort = chrome.tabs.connect(tab.id);
                 toGetterPort.postMessage({getStreamDetail: 'ELCget'});
         
@@ -73,12 +73,12 @@ function getStreamDetail() {
                             streamTitle: response.getter_streamTitle,
                             streamURL: response.getter_streamURL
                         });
-                        chatOKCount++
+                    };
+                    index++
+                    if (index === tabs.length) {
+                        resolve(contentArray);
                     };
                 });
-                if (index === tabs.length-1) {
-                    resolve(contentArray);
-                };
             });
         });
     });

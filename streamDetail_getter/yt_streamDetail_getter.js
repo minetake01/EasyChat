@@ -4,7 +4,7 @@ chrome.runtime.onConnect.addListener(function(port) {
             let platform = 'youtube'
             let chatOK = !!$('#input', $('#chatframe')[0].contentWindow.document);
             let streamURL = location.href;
-            let streamTitle = $('#container > h1 > yt-formatted-string').html();
+            let streamTitle = $('#movie_player > div.ytp-chrome-top > div.ytp-title > div > a').html();
             
             port.postMessage({
                 getter_platform: platform,
