@@ -67,6 +67,7 @@ function getStreamDetail() {
                 toGetterPort.postMessage({getStreamDetail: 'ELCget'});
         
                 toGetterPort.onMessage.addListener(function(response) {
+                    console.log(response)
                     if (response.getter_chatOK === true) {
                         contentArray.push({
                             platform: response.getter_platform,
@@ -75,6 +76,8 @@ function getStreamDetail() {
                         });
                     };
                     index++
+                    console.log(index)
+                    console.log(tabs.length)
                     if (index === tabs.length) {
                         resolve(contentArray);
                     };
