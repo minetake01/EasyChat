@@ -57,7 +57,7 @@ $(window).on('load', function() {
     port.postMessage({type: 'getStreamDetail'});
     port.onMessage.addListener(function(message) {
         console.log(message)
-        //$('#contents.easy-live-chat').append(contentElement())
+        $('#contents.easy-live-chat').append(contentElement())
         return;
     });
 });

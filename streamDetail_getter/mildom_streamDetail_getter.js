@@ -4,7 +4,7 @@ chrome.runtime.onConnect.addListener(function(port) {
             let platform = 'mildom'
             let chatOK = !!$('textarea.chat-panel-input').length;
             let streamURL = location.href;
-            let streamTitle = $('.jKEABp > .title').html();
+            let streamTitle = $('.right .title').html();
             
             port.postMessage({
                 getter_platform: platform,

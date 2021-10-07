@@ -14,7 +14,6 @@
 	"content_scripts": [
 		{
 			"matches": ["https://www.youtube.com/*"],
-			"include_globs": ["*://*/*watch*"],
 			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/yt_streamDetail_getter.js"]
 		},
 		{

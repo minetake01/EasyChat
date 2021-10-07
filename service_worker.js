@@ -49,7 +49,6 @@ let windowID = -1;
                 getStreamDetail().then(function(contentArray) {
                     let contentJSON = JSON.stringify(contentArray);
                     console.log(contentArray)
-                    console.log(contentJSON)
                     port.postMessage({contentArray: contentJSON});
                 });
             };
@@ -76,8 +75,6 @@ function getStreamDetail() {
                         });
                     };
                     index++
-                    console.log(index)
-                    console.log(tabs.length)
                     if (index === tabs.length) {
                         resolve(contentArray);
                     };
