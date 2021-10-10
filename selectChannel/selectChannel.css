@@ -1,48 +1,50 @@
 :root {
-    --main-background: #f9f9f9;
-    --header-background: #fff;
+	--main-background: #f9f9f9;
+	--header-background: #fff;
 
-    --main-text-color: #000;
+	--main-text-color: #000;
 }
 @media (prefers-color-scheme: dark) {
-    :root {
-        --main-background: #181818;
-        --header-background: #202020;
+	:root {
+		--main-background: #181818;
+		--header-background: #202020;
 
-        --main-text-color: #fff;
-    }
+		--main-text-color: #fff;
+	}
 }
 body {
-    background: var(--main-background);
-    margin: 0px;
+	background: var(--main-background);
+	margin: 0px;
 }
 #header {
-    display: flex;
-    background: var(--header-background);
-    height: 40px;
-    width: 100%;
+	display: flex;
+	background: var(--header-background);
+	height: 40px;
+	width: 100%;
 }
 #title.select-stream-header {
-    color: var(--main-text-color);
-    font-size: 16px;
-    margin: auto 12px;
-    user-select: none;
+	color: var(--main-text-color);
+	font-size: 16px;
+	margin: auto 12px;
+	user-select: none;
 }
 #contents {
-    margin: 0px 8px;
+	margin: 0px 8px;
 }
 #content {
-    display: flex;
-    width: 100%;
+	display: flex;
+	width: 100%;
+	cursor: pointer;
+	user-select: none;
 }
 .platform-icon {
-    margin: 8px;
+	margin: 8px;
 }
 #content-title {
-    color: var(--main-text-color);
-    font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin: auto 0px;
+	color: var(--main-text-color);
+	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: auto 0px;
 }
