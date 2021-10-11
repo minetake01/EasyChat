@@ -32,9 +32,10 @@ body {
 	margin: 0px 8px;
 }
 #content {
+	position: relative;
 	display: flex;
+	height: calc(200 / 3);
 	width: 100%;
-	cursor: pointer;
 	user-select: none;
 }
 .platform-icon {
@@ -47,4 +48,11 @@ body {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	margin: auto 0px;
+}
+#content a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
 }
