@@ -71,7 +71,8 @@ function getStreamDetail() {
 					if (response.getter_chatOK === true) {
 						contentArray.push({
 							platform: response.getter_platform,
-							streamTitle: response.getter_streamTitle
+							streamTitle: response.getter_streamTitle,
+							streamURL: response.getter_streamURL
 						});
 					};
 					index++
