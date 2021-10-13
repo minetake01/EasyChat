@@ -14,37 +14,44 @@
 	"content_scripts": [
 		{
 			"matches": ["https://www.youtube.com/*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/yt_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/yt_streamDetail_getter.js"]
 		},
 		{
 			"matches": ["https://live.nicovideo.jp/*"],
 			"include_globs": ["*://*/*watch*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/nico_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/nico_streamDetail_getter.js"]
 		},
 		{
 			"matches": ["https://www.twitch.tv/*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/twitch_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/twitch_streamDetail_getter.js"]
 		},
 		{
 			"matches": ["https://www.showroom-live.com/*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/showroom_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/showroom_streamDetail_getter.js"]
 		},
 		{
 			"matches": ["https://www.openrec.tv/*"],
 			"include_globs": ["*://*/*live*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/openrec_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/openrec_streamDetail_getter.js"]
 		},
 		{
 			"matches": ["https://www.mildom.com/*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/mildom_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/mildom_streamDetail_getter.js"]
 		},
 		{
 			"matches": ["https://twitcasting.tv/*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/twicas_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/twicas_streamDetail_getter.js"]
 		},
 		{
 			"matches": ["https://0000.studio/*"],
-			"js": ["jquery-3.6.0.min.js", "streamDetail_getter/f0studio_streamDetail_getter.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/f0studio_streamDetail_getter.js"]
+		},
+		{
+			"matches": ["https://www.youtube.com/*"],
+			"include_globs": ["*://*/*live_chat*"],
+			"all_frames": true,
+			"run_at": "document_end",
+			"js": ["./jquery-3.6.0.min.js", "./chatConsole/youtube/youtube.js"]
 		}
 	],
 	"background": {
@@ -61,7 +68,7 @@
     },
 	"web_accessible_resources": [
 		{
-			"resources": ["selectChannel/selectChannel.html"],
+			"resources": ["./selectChannel/selectChannel.html"],
 			"matches": ["<all_urls>"]
 		}
 	]

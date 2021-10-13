@@ -10,4 +10,5 @@ function getParam(name, url) {
 
 if (getParam('ELC') === 'true') {
     $('#chat').hide();
+    $('#chat-messages > yt-live-chat-header-renderer').hide();
 };
