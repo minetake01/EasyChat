@@ -1,8 +1,8 @@
 {
 	"manifest_version": 3,
-	"name": "EasyLiveChat",
+	"name": "Live Chat Servant",
 	"version": "1.0.0",
-	"description": "配信ページを開かずに、ショートカットキーですばやくチャットができます。",
+	"description": "複数の配信プラットフォームで、すばやくチャットができます。",
 	"icons": {
     	//"16": "icon/icon16.png",
     	//"48": "icon/icon48.png",
