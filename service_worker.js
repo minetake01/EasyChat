@@ -1,4 +1,3 @@
-const selectChannelURL = chrome.runtime.getURL('selectChannel/selectChannel.html');
 const urls = [
 	'https://www.youtube.com/watch*',
 	'https://live.nicovideo.jp/watch*',
@@ -17,7 +16,7 @@ const windowOption = {
 	type: 'panel',
 	height: 200,
 	width: 500,
-	url: selectChannelURL
+	url: './selectChannel/selectChannel.html'
 };
 
 let windowID = -1;

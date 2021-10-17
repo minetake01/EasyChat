@@ -13,45 +13,46 @@
 	],
 	"content_scripts": [
 		{
-			"matches": ["https://www.youtube.com/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/yt_streamDetail_getter.js"]
+			"matches": ["https://live.nicovideo.jp/*", "https://www.twitch.tv/*", "https://www.showroom-live.com/*", "https://www.openrec.tv/*", "https://www.mildom.com/*", "https://twitcasting.tv/*", "https://0000.studio/*"],
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./chatSender/chat_sender.js", "./chatSender/lib.js"]
 		},
 		{
 			"matches": ["https://live.nicovideo.jp/*"],
-			"include_globs": ["*://*/*watch*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/nico_streamDetail_getter.js"]
+			"js": ["./streamDetail_getter/common/niconico.js", "./historyViewer/common/niconico.js", "./chatSender/common/niconico.js"]
 		},
 		{
 			"matches": ["https://www.twitch.tv/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/twitch_streamDetail_getter.js"]
+			"js": ["./streamDetail_getter/common/twitch.js", "./historyViewer/common/twitch.js", "./chatSender/common/twitch.js"]
 		},
 		{
 			"matches": ["https://www.showroom-live.com/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/showroom_streamDetail_getter.js"]
+			"js": ["./streamDetail_getter/common/showroom.js", "./historyViewer/common/showroom.js", "./chatSender/common/showroom.js"]
 		},
 		{
 			"matches": ["https://www.openrec.tv/*"],
-			"include_globs": ["*://*/*live*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/openrec_streamDetail_getter.js"]
+			"js": ["./streamDetail_getter/common/openrec.js", "./historyViewer/common/openrec.js", "./chatSender/common/openrec.js"]
 		},
 		{
 			"matches": ["https://www.mildom.com/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/mildom_streamDetail_getter.js"]
+			"js": ["./streamDetail_getter/common/mildom.js", "./historyViewer/common/mildom.js", "./chatSender/common/mildom.js"]
 		},
 		{
 			"matches": ["https://twitcasting.tv/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/twicas_streamDetail_getter.js"]
+			"js": ["./streamDetail_getter/common/twicas.js", "./historyViewer/common/twicas.js", "./chatSender/common/twicas.js"]
 		},
 		{
 			"matches": ["https://0000.studio/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/f0studio_streamDetail_getter.js"]
+			"js": ["./streamDetail_getter/common/f0studio.js", "./historyViewer/common/f0studio.js", "./chatSender/common/f0studio.js"]
+		},
+		{
+			"matches": ["https://www.youtube.com/*"],
+			"exclude_globs": ["*://*/*live_chat*"],
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./streamDetail_getter/common/youtube.js"]
 		},
 		{
 			"matches": ["https://www.youtube.com/*"],
 			"include_globs": ["*://*/*live_chat*"],
-			"all_frames": true,
-			"run_at": "document_end",
-			"js": ["./jquery-3.6.0.min.js", "./chatConsole/youtube/youtube.js"]
+			"js": ["./jquery-3.6.0.min.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./historyViewer/common/youtube.js", "./chatSender/chat_sender.js", "./chatSender/lib.js", "./chatSender/common/youtube.js"]
 		}
 	],
 	"background": {
@@ -65,11 +66,5 @@
     		"description": "チャットの入力",
 			"global": true
     	}
-    },
-	"web_accessible_resources": [
-		{
-			"resources": ["./selectChannel/selectChannel.html"],
-			"matches": ["<all_urls>"]
-		}
-	]
+    }
 }
