@@ -56,7 +56,7 @@
 		}
 	],
 	"background": {
-        "service_worker": "service_worker.js"
+        "service_worker": "./serviceWorker/service_worker.js"
     },
     "commands": {
     	"EasyLiveChat": {

@@ -1,3 +1,5 @@
+importScripts('./lib.js');
+
 const urls = [
 	'https://www.youtube.com/watch*',
 	'https://live.nicovideo.jp/watch*',
