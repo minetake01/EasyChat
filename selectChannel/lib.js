@@ -21,7 +21,7 @@ function updateContent() {
 	let port = chrome.runtime.connect();
 	port.postMessage({type: 'getStreamDetail'});
 	port.onMessage.addListener(function(message) {
-		let contentArray = JSON.parse(message.contentArray);
+		let contentArray = message.contentArray;
 		$('#contents').empty();
 		contentArray.forEach(function(value) {
 			$('#contents').append(contentElement(value.streamTitle, value.platform, value.streamURL))
