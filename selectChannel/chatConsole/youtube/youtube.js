@@ -1,5 +1,6 @@
-function getParam(name, url) {
-    if (!url) url = window.location.href;
+//クエリパラメータ取得
+function getParam(name) {
+    url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);

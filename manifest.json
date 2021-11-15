@@ -13,7 +13,7 @@
 	],
 	"content_scripts": [
 		{
-			"matches": ["https://live.nicovideo.jp/*", "https://www.twitch.tv/*", "https://www.showroom-live.com/*", "https://www.openrec.tv/*", "https://www.mildom.com/*", "https://twitcasting.tv/*", "https://0000.studio/*"],
+			"matches": ["https://live.nicovideo.jp/*", "https://www.twitch.tv/*", "https://www.showroom-live.com/*", "https://www.openrec.tv/*", "https://www.mildom.com/*", "https://twitcasting.tv/*"],
 			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./chatSender/chat_sender.js", "./chatSender/lib.js"]
 		},
 		{
@@ -41,10 +41,6 @@
 			"js": ["./streamDetail_getter/common/twicas.js", "./historyViewer/common/twicas.js", "./chatSender/common/twicas.js"]
 		},
 		{
-			"matches": ["https://0000.studio/*"],
-			"js": ["./streamDetail_getter/common/f0studio.js", "./historyViewer/common/f0studio.js", "./chatSender/common/f0studio.js"]
-		},
-		{
 			"matches": ["https://www.youtube.com/*"],
 			"exclude_globs": ["*://*/*live_chat*"],
 			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./streamDetail_getter/common/youtube.js"]
@@ -52,7 +48,7 @@
 		{
 			"matches": ["https://www.youtube.com/*"],
 			"include_globs": ["*://*/*live_chat*"],
-			"js": ["./jquery-3.6.0.min.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./historyViewer/common/youtube.js", "./chatSender/chat_sender.js", "./chatSender/lib.js", "./chatSender/common/youtube.js"]
+			"js": ["./jquery-3.6.0.min.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./selectChannel/chatConsole/youtube/youtube.js", "./historyViewer/common/youtube.js", "./chatSender/chat_sender.js", "./chatSender/lib.js", "./chatSender/common/youtube.js"]
 		}
 	],
 	"background": {

@@ -6,8 +6,7 @@ const urls = [
 	'https://www.showroom-live.com/*',
 	'https://www.openrec.tv/live*',
 	'https://www.mildom.com/*',
-	'https://twitcasting.tv/*',
-	'https://0000.studio/*'
+	'https://twitcasting.tv/*'
 ];
 //チャンネル選択ウィンドウの初期状態
 const windowOption = {
@@ -20,6 +19,7 @@ const windowOption = {
 	url: './selectChannel/selectChannel.html'
 };
 
+//ウィンドウID保持
 let windowID = -1;
 
 //ウィンドウ作成
@@ -36,5 +36,43 @@ function windowCreate(option) {
 				windowID = window.id;
 			});
 		};
+	});
+};
+
+//配信ページと通信して取得した詳細情報を配列(Promise)で返す
+function getStreamDetailPromise() {
+	return new Promise(resolve => {
+		chrome.tabs.query({url: urls}, function(tabs) {
+			let index = 0;
+			let contentArray = [];
+			tabs.forEach(function(tab){
+				console.log('tab  ' + tab.url);    //debug
+				let toGetterPort = chrome.tabs.connect(tab.id);
+				toGetterPort.postMessage({getStreamDetail: 'ELCget'});
+		
+				toGetterPort.onMessage.addListener(function(response) {
+					console.log('response	 ' + response.getter_platform +"\n"+
+								'chatOK		 ' + response.getter_chatOK +"\n"+
+								'streamURL	 ' + response.getter_streamURL +"\n"+
+								'streamTitle ' + response.getter_streamTitle +"\n"+
+								'channelName ' + response.getter_channelName +"\n"+
+								'channelID	 ' + response.getter_channelID +"\n"+
+								'other		 ' + response.getter_other);  //debug
+
+					if (response.getter_chatOK === true) {
+						contentArray.push({
+							platform: response.getter_platform,
+							streamTitle: response.getter_streamTitle,
+							streamURL: response.getter_streamURL
+						});
+					};
+					index++
+					if (index === tabs.length) {
+						console.log('search success');  //debug
+						resolve(contentArray);
+					};
+				});
+			});
+		});
 	});
 };
