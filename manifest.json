@@ -14,7 +14,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://live.nicovideo.jp/*", "https://www.twitch.tv/*", "https://www.showroom-live.com/*", "https://www.openrec.tv/*", "https://www.mildom.com/*", "https://twitcasting.tv/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./chatSender/chat_sender.js", "./chatSender/lib.js"],
+			"js": ["./jquery-3.6.0.min.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./chatSender/chat_sender.js", "./chatSender/lib.js"],
 			"run_at": "document_end"
 		},
 		{
@@ -50,7 +50,7 @@
 		{
 			"matches": ["https://www.youtube.com/*"],
 			"exclude_globs": ["*://*/*live_chat*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./streamDetail_getter/common/youtube.js"],
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/common/youtube.js"],
 			"run_at": "document_end"
 		},
 		{

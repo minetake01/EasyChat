@@ -5,10 +5,10 @@ chrome.runtime.onConnect.addListener(function(port) {
 			let channelID;
 			if ($('.___program-provider-type-label___3VgIC').length) {
 				channelName = $('div.___channel-information-area___1kBok>a').html();
-				channelID = $('div.___channel-information-area___1kBok>a').attr('href');
+				channelID = $('div.___channel-information-area___1kBok>a').attr('href').replace('http://www.nicovideo.jp/channel/', '');
 			} else {
 				channelName = $('.___user-name___DbpE9>[class=name]').html();
-				channelID = $('.___user-name___DbpE9').attr('href');
+				channelID = $('.___user-name___DbpE9').attr('href').replace('http://www.nicovideo.jp/user/', '');
 			};
 			let other
 			
