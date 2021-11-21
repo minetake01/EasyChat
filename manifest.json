@@ -14,41 +14,50 @@
 	"content_scripts": [
 		{
 			"matches": ["https://live.nicovideo.jp/*", "https://www.twitch.tv/*", "https://www.showroom-live.com/*", "https://www.openrec.tv/*", "https://www.mildom.com/*", "https://twitcasting.tv/*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./chatSender/chat_sender.js", "./chatSender/lib.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./chatSender/chat_sender.js", "./chatSender/lib.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://live.nicovideo.jp/*"],
-			"js": ["./streamDetail_getter/common/niconico.js", "./historyViewer/common/niconico.js", "./chatSender/common/niconico.js"]
+			"js": ["./streamDetail_getter/common/niconico.js", "./historyViewer/common/niconico.js", "./chatSender/common/niconico.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://www.twitch.tv/*"],
-			"js": ["./streamDetail_getter/common/twitch.js", "./historyViewer/common/twitch.js", "./chatSender/common/twitch.js"]
+			"js": ["./streamDetail_getter/common/twitch.js", "./historyViewer/common/twitch.js", "./chatSender/common/twitch.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://www.showroom-live.com/*"],
-			"js": ["./streamDetail_getter/common/showroom.js", "./historyViewer/common/showroom.js", "./chatSender/common/showroom.js"]
+			"js": ["./streamDetail_getter/common/showroom.js", "./historyViewer/common/showroom.js", "./chatSender/common/showroom.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://www.openrec.tv/*"],
-			"js": ["./streamDetail_getter/common/openrec.js", "./historyViewer/common/openrec.js", "./chatSender/common/openrec.js"]
+			"js": ["./streamDetail_getter/common/openrec.js", "./historyViewer/common/openrec.js", "./chatSender/common/openrec.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://www.mildom.com/*"],
-			"js": ["./streamDetail_getter/common/mildom.js", "./historyViewer/common/mildom.js", "./chatSender/common/mildom.js"]
+			"js": ["./streamDetail_getter/common/mildom.js", "./historyViewer/common/mildom.js", "./chatSender/common/mildom.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://twitcasting.tv/*"],
-			"js": ["./streamDetail_getter/common/twicas.js", "./historyViewer/common/twicas.js", "./chatSender/common/twicas.js"]
+			"js": ["./streamDetail_getter/common/twicas.js", "./historyViewer/common/twicas.js", "./chatSender/common/twicas.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://www.youtube.com/*"],
 			"exclude_globs": ["*://*/*live_chat*"],
-			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./streamDetail_getter/common/youtube.js"]
+			"js": ["./jquery-3.6.0.min.js", "./streamDetail_getter/streamDetail_getter.js", "./streamDetail_getter/common/youtube.js"],
+			"run_at": "document_end"
 		},
 		{
 			"matches": ["https://www.youtube.com/*"],
 			"include_globs": ["*://*/*live_chat*"],
-			"js": ["./jquery-3.6.0.min.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./selectChannel/chatConsole/youtube/youtube.js", "./historyViewer/common/youtube.js", "./chatSender/chat_sender.js", "./chatSender/lib.js", "./chatSender/common/youtube.js"]
+			"js": ["./jquery-3.6.0.min.js", "./historyViewer/history_viewer.js", "./historyViewer/lib.js", "./selectChannel/chatConsole/youtube/youtube.js", "./historyViewer/common/youtube.js", "./chatSender/chat_sender.js", "./chatSender/lib.js", "./chatSender/common/youtube.js"],
+			"run_at": "document_end"
 		}
 	],
 	"background": {
