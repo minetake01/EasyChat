@@ -4,7 +4,6 @@ importScripts('./lib.js');
 chrome.commands.onCommand.addListener((command) => {
 	chrome.tabs.query({url: urls}, function(tabs) {
 		if (command === 'EasyLiveChat' && tabs.length) {
-			
 			windowCreate(windowOption);
 		};
 	});
