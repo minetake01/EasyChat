@@ -2,9 +2,12 @@ importScripts('./lib.js');
 
 //ショートカット
 chrome.commands.onCommand.addListener((command) => {
-	if (command === 'EasyLiveChat') {
-		windowCreate(windowOption);
-	};
+	chrome.tabs.query({url: urls}, function(tabs) {
+		if (command === 'EasyLiveChat' && tabs.length) {
+			
+			windowCreate(windowOption);
+		};
+	});
 });
 
 //配信情報リクエストに応答
