@@ -9,14 +9,26 @@ const urls = [
 	'https://twitcasting.tv/*'
 ];
 //チャンネル選択ウィンドウの初期状態
-const windowOption = {
-	focused: true,
-	top: 32,
-	left: 32,
-	type: 'panel',
-	height: 200,
-	width: 500,
-	url: './selectChannel/selectChannel.html'
+function selectChannelWinOpt(streamDetailArray) {
+	if (streamDetailArray.length === 1) {
+		if (streamDetailArray[0].platform === 'youtube') {
+			url = 'https://www.youtube.com/live_chat?is_popout=1&v=' + streamDetailArray[0].streamURL + '&ELC=true&title=' + streamDetailArray[0].streamTitle;
+		} else {
+			url = '../chatConsole/' + contentArray[0].platform + '/' + streamDetailArray[0].platform + '.html?streamURL=' + streamDetailArray[0].streamURL + '&title=' + streamDetailArray[0].streamTitle;
+		};
+	} else {
+		url = './selectChannel/selectChannel.html';
+	};
+
+	return {
+		focused: true,
+		top: 32,
+		left: 32,
+		type: 'panel',
+		height: 200,
+		width: 500,
+		url: url
+	};
 };
 
 //ウィンドウID保持

@@ -21,14 +21,7 @@ function updateContent() {
 	port.postMessage({type: 'getStreamDetail'});
 	port.onMessage.addListener(function(message) {
 		let contentArray = message.contentArray;
-		$('#contents').empty();
-		if (contentArray.length === 1) {
-			if (contentArray[0].platform === 'youtube') {
-				location.href = 'https://www.youtube.com/live_chat?is_popout=1&v=' + contentArray[0].streamURL + '&ELC=true&title=' + contentArray[0].streamTitle;
-			} else {
-				location.href = '../chatConsole/' + contentArray[0].platform + '/' + contentArray[0].platform + '.html?streamURL=' + contentArray[0].streamURL + '&title=' + contentArray[0].streamTitle;
-			};
-		};
+		$('#contents').empty();	//初期化
 		contentArray.forEach(function(value) {
 			$('#contents').append(contentElement(value.streamTitle, value.platform, value.streamURL));
 		});

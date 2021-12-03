@@ -1,10 +1,15 @@
 importScripts('./lib.js');
 
+let streamDetailArray;
+
 //ショートカット
 chrome.commands.onCommand.addListener((command) => {
-	chrome.tabs.query({url: urls}, function(tabs) {
-		if (command === 'EasyLiveChat' && tabs.length) {
-			windowCreate(windowOption);
+	getStreamDetailPromise().then(function(array) {
+		streamDetailArray = array;
+		console.log(streamDetailArray);  //debug
+
+		if (command === 'EasyLiveChat') {
+			windowCreate(selectChannelWinOpt(streamDetailArray));
 		};
 	});
 });
@@ -14,10 +19,7 @@ chrome.commands.onCommand.addListener((command) => {
 	chrome.runtime.onConnect.addListener(function(port) {
 		port.onMessage.addListener(function(message) {
 			if (message.type === 'getStreamDetail') {
-				getStreamDetailPromise().then(function(contentArray) {
-					console.log(contentArray);  //debug
-					port.postMessage({contentArray: contentArray});
-				});
+				port.postMessage({contentArray: streamDetailArray});
 			};
 		});
 	});
